@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { SiteHeader } from "./site-header";
 
 const services = [
@@ -18,6 +19,13 @@ const founders = [
   { initials: "ID", name: "Israel Dillanes" },
 ];
 
+const contactPreview = {
+  email: "hola@ramdilabs.example",
+  whatsapp: "+52 000 000 0000",
+  isActive: false,
+  notice: "Datos de muestra. Los canales de contacto estarán disponibles próximamente.",
+} as const;
+
 function ArrowIcon() {
   return <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" /></svg>;
 }
@@ -25,19 +33,27 @@ function ArrowIcon() {
 function WaveVisual() {
   return (
     <div className="hero-visual" aria-hidden="true">
-      <svg viewBox="0 0 620 620" fill="none">
-        <circle className="visual-orbit visual-orbit-outer" cx="310" cy="310" r="252" />
-        <circle className="visual-orbit visual-orbit-inner" cx="310" cy="310" r="170" />
-        <path className="visual-wave visual-wave-back" d="M-5 349C76 277 150 273 226 325c76 52 142 55 208 4 66-52 126-55 191-7" />
-        <path className="visual-wave visual-wave-front" d="M-18 414c90-79 172-82 255-25 83 58 160 58 230 0 70-57 123-62 175-29" />
-        <path className="visual-flow" d="M101 259c91-91 189-130 292-107 67 15 118 50 153 105" />
-        <circle className="visual-node" cx="101" cy="259" r="7" />
-        <circle className="visual-node" cx="393" cy="152" r="7" />
-        <circle className="visual-node" cx="546" cy="257" r="7" />
-        <circle className="visual-core" cx="310" cy="310" r="14" />
+      <div className="visual-halo" />
+      <svg className="visual-geometry" viewBox="0 0 620 620" fill="none">
+        <circle className="visual-orbit visual-orbit-outer" cx="310" cy="310" r="238" />
+        <path className="visual-orbit visual-orbit-inner" d="M160 352a158 158 0 1 1 300-84" />
+        <circle className="visual-node visual-node-turquoise" cx="116" cy="172" r="5" />
+        <circle className="visual-node visual-node-soft" cx="460" cy="268" r="4" />
+        <path className="visual-wave visual-wave-back" d="M36 366c84-48 158-49 231-6 77 45 153 46 226 2 36-22 68-30 91-27" />
+        <path className="visual-wave visual-wave-front" d="M22 405c91-51 171-52 248-7 82 48 161 49 237 3 35-21 65-27 89-22" />
+        <path className="visual-wave-accent" d="M22 405c91-51 171-52 248-7 82 48 161 49 237 3 35-21 65-27 89-22" />
       </svg>
-      <span className="visual-label visual-label-top">Ideas</span>
-      <span className="visual-label visual-label-bottom">Soluciones</span>
+      <div className="visual-brand-position">
+        <div className="visual-brand-motion">
+          <Image
+            src="/images/ramdi-icon-transparent.png"
+            alt=""
+            width={1254}
+            height={1254}
+            sizes="(max-width: 680px) 56vw, 270px"
+          />
+        </div>
+      </div>
     </div>
   );
 }
@@ -56,8 +72,8 @@ export default function Home() {
               <h1 className="hero-reveal hero-reveal-delay-one">Convertimos ideas en <span>soluciones digitales.</span></h1>
               <p className="hero-description hero-reveal hero-reveal-delay-two">Somos Alan e Israel. Creamos Ramdi Labs para desarrollar software, automatizar procesos con inteligencia artificial y ayudar a negocios a dar su siguiente paso digital.</p>
               <div className="hero-actions hero-reveal hero-reveal-delay-three">
-                <a className="button button-primary" href="#servicios">Explorar soluciones <ArrowIcon /></a>
-                <a className="button button-secondary" href="#equipo">Conoce al equipo</a>
+                <a className="button button-primary" href="#contacto">Hablemos de tu idea <ArrowIcon /></a>
+                <a className="button button-secondary" href="#servicios">Explorar soluciones</a>
               </div>
             </div>
             <WaveVisual />
@@ -114,6 +130,27 @@ export default function Home() {
                   <div><h3>{founder.name}</h3><p>Cofundador · Ingeniero en Sistemas</p></div>
                 </article>
               ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section contact" id="contacto">
+          <div className="section-inner contact-layout">
+            <div className="contact-intro">
+              <p className="eyebrow">Contacto</p>
+              <h2>Cuéntanos qué te gustaría mejorar.</h2>
+              <p>¿Tienes una idea o un proceso que te quita demasiado tiempo? Podemos empezar por entender lo que necesitas.</p>
+            </div>
+            <div className="contact-details" aria-label="Vista previa de los canales de contacto">
+              <div className="contact-row">
+                <p className="contact-label">Email</p>
+                <p className="contact-value">{contactPreview.email}</p>
+              </div>
+              <div className="contact-row">
+                <p className="contact-label">WhatsApp</p>
+                <p className="contact-value">{contactPreview.whatsapp}</p>
+              </div>
+              {!contactPreview.isActive && <p className="contact-notice">{contactPreview.notice}</p>}
             </div>
           </div>
         </section>

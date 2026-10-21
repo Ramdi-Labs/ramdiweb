@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 const navigation = [
   { href: "#servicios", label: "Servicios" },
   { href: "#proceso", label: "Cómo trabajamos" },
   { href: "#equipo", label: "Equipo" },
+  { href: "#contacto", label: "Contacto" },
 ];
 
 export function SiteHeader() {
@@ -32,7 +34,8 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="header-inner">
         <a className="wordmark" href="#inicio" aria-label="Ramdi Labs, ir al inicio" onClick={closeMenu}>
-          Ramdi Labs
+          <Image src="/images/ramdi-logo.png" alt="" width={1254} height={1254} priority sizes="48px" />
+          <span>Ramdi Labs</span>
         </a>
         <details ref={menuRef} className="navigation-menu">
           <summary ref={toggleRef} className="menu-toggle" aria-label="Abrir o cerrar menú">
