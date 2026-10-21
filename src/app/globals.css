@@ -40,7 +40,7 @@ body {
 }
 
 a { color: inherit; text-decoration: none; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--turquoise); outline-offset: 4px; }
+a:focus-visible, button:focus-visible, .menu-toggle:focus-visible { outline: 2px solid var(--turquoise); outline-offset: 4px; }
 
 .skip-link {
   position: fixed;
@@ -84,22 +84,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--turquoise); out
   display: inline-flex;
   min-height: 2.75rem;
   align-items: center;
-  gap: 0.75rem;
   font-size: 0.95rem;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
-.wordmark-symbol {
-  display: grid;
-  width: 2rem;
-  height: 2rem;
-  place-items: center;
-  border: 1px solid rgba(8, 223, 207, 0.5);
-  border-radius: 50%;
-  color: var(--turquoise);
-  font-size: 0.82rem;
-}
+.navigation-menu { display: contents; }
+.menu-toggle { display: none; }
 
 nav { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2.5rem); }
 nav a {
@@ -130,7 +121,6 @@ nav a:hover::after { transform: scaleX(1); transform-origin: left; }
 .hero {
   position: relative;
   isolation: isolate;
-  min-height: calc(100svh - 5rem);
   overflow: hidden;
 }
 .hero::before {
@@ -147,9 +137,8 @@ nav a:hover::after { transform: scaleX(1); transform-origin: left; }
 .hero-inner {
   display: grid;
   width: min(calc(100% - 3rem), var(--content-width));
-  min-height: calc(100svh - 5rem);
   margin-inline: auto;
-  padding-block: clamp(5rem, 11vh, 8rem) clamp(8rem, 15vh, 11rem);
+  padding-block: clamp(4rem, 8vw, 6.5rem) clamp(6.5rem, 10vw, 8.5rem);
   align-items: center;
   grid-template-columns: minmax(0, 1.08fr) minmax(24rem, 0.92fr);
   gap: clamp(2rem, 5vw, 6rem);
@@ -231,8 +220,7 @@ h1 span { color: var(--turquoise); }
 .visual-wave-front { stroke: var(--turquoise); }
 .visual-flow { stroke: rgba(245, 247, 250, 0.3); stroke-dasharray: 4 10; stroke-linecap: round; }
 .visual-node { fill: var(--background); stroke: var(--turquoise); stroke-width: 2; }
-.visual-core { fill: rgba(11, 25, 56, 0.86); stroke: rgba(8, 223, 207, 0.5); }
-.visual-mark { stroke: var(--main-text); stroke-linecap: round; stroke-linejoin: round; stroke-width: 3; }
+.visual-core { fill: var(--turquoise); filter: drop-shadow(0 0 14px rgba(8, 223, 207, 0.4)); }
 .visual-label {
   position: absolute;
   color: var(--muted-text);
@@ -256,7 +244,7 @@ h1 span { color: var(--turquoise); }
 }
 
 .section { scroll-margin-top: 5rem; }
-.services { padding-block: clamp(6rem, 11vw, 10rem); background: var(--background-soft); }
+.services { padding-block: clamp(4.5rem, 8vw, 7rem); background: var(--background-soft); }
 .section-heading {
   display: grid;
   align-items: start;
@@ -276,19 +264,19 @@ h1 span { color: var(--turquoise); }
 .section-heading > p:last-child { margin: 0.4rem 0 0; color: var(--muted-text); font-size: 1rem; line-height: 1.75; }
 .service-list {
   display: grid;
-  margin-top: clamp(4rem, 8vw, 7rem);
+  margin-top: clamp(3rem, 5vw, 4.5rem);
   border-top: 1px solid var(--line);
   grid-template-columns: repeat(3, 1fr);
 }
 .service-item {
   position: relative;
-  min-height: 21rem;
+  min-height: 18rem;
   padding: 2rem clamp(1.25rem, 3vw, 2.5rem) 2.5rem;
   border-right: 1px solid var(--line);
 }
 .service-item:first-child { padding-left: 0; }
 .service-item:last-child { padding-right: 0; border-right: 0; }
-.service-number { display: block; margin-bottom: 5rem; color: var(--turquoise); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; }
+.service-number { display: block; margin-bottom: 3.5rem; color: var(--turquoise); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; }
 .service-item h3 {
   max-width: 12ch;
   margin-bottom: 1rem;
@@ -312,7 +300,26 @@ h1 span { color: var(--turquoise); }
 }
 .service-item:hover .service-line { opacity: 1; transform: scaleX(1); }
 
-.founders { position: relative; padding-block: clamp(6rem, 12vw, 11rem); overflow: hidden; }
+.process { padding-block: clamp(4.5rem, 8vw, 7rem); border-top: 1px solid var(--line); background: var(--background-soft); }
+.process-layout { display: grid; grid-template-columns: minmax(18rem, 0.78fr) minmax(0, 1.22fr); gap: clamp(3rem, 9vw, 8rem); }
+.process-intro { position: sticky; top: 8rem; align-self: start; }
+.process-intro h2 {
+  max-width: 11ch;
+  margin-bottom: 1.75rem;
+  font-size: clamp(2.5rem, 4.7vw, 4.8rem);
+  font-weight: 600;
+  letter-spacing: -0.055em;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+.process-intro > p:last-child { max-width: 35rem; margin-bottom: 0; color: var(--muted-text); font-size: 1rem; line-height: 1.75; }
+.process-list { margin: 0; padding: 0; border-top: 1px solid var(--line); list-style: none; }
+.process-step { display: grid; padding-block: clamp(1.75rem, 3vw, 2.5rem); border-bottom: 1px solid var(--line); grid-template-columns: 4rem 1fr; gap: clamp(1rem, 3vw, 2rem); }
+.process-number { padding-top: 0.25rem; color: var(--turquoise); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; }
+.process-step h3 { margin-bottom: 0.75rem; font-size: clamp(1.35rem, 2.1vw, 1.9rem); font-weight: 600; letter-spacing: -0.035em; line-height: 1.15; }
+.process-step p { max-width: 34rem; margin-bottom: 0; color: var(--muted-text); font-size: 0.95rem; line-height: 1.7; }
+
+.founders { position: relative; padding-block: clamp(4.5rem, 8vw, 7rem); overflow: hidden; }
 .founders::after {
   position: absolute;
   z-index: -1;
@@ -371,18 +378,53 @@ footer a { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 
 @media (max-width: 900px) {
   .hero-inner { padding-top: 5rem; grid-template-columns: 1fr; }
   .hero-visual { width: min(100%, 31rem); margin-top: -3rem; justify-self: center; }
-  .section-heading, .founders-layout { grid-template-columns: 1fr; }
+  .section-heading, .founders-layout, .process-layout { grid-template-columns: 1fr; }
   .section-heading > p:last-child { max-width: 38rem; margin-top: 1.75rem; }
   .founders-layout { gap: 4rem; }
+  .process-layout { gap: 3.5rem; }
+  .process-intro { position: static; }
 }
 
 @media (max-width: 680px) {
   .header-inner, .hero-inner, .section-inner, .footer-inner { width: min(calc(100% - 2rem), var(--content-width)); }
   .header-inner { min-height: 4.5rem; }
-  .wordmark { gap: 0.55rem; font-size: 0.82rem; }
-  .wordmark-symbol { width: 1.75rem; height: 1.75rem; }
-  nav { gap: 0.85rem; }
-  nav a { font-size: 0.78rem; }
+  .wordmark { font-size: 0.88rem; }
+  .menu-toggle {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    place-content: center;
+    gap: 0.35rem;
+    border: 1px solid var(--line);
+    border-radius: 0.25rem;
+    background: transparent;
+    color: var(--main-text);
+    cursor: pointer;
+    list-style: none;
+  }
+  .menu-toggle::-webkit-details-marker { display: none; }
+  .menu-toggle span { display: block; width: 1.15rem; height: 1px; background: currentColor; transition: transform 180ms ease; }
+  .navigation-menu[open] .menu-toggle span:first-child { transform: translateY(0.2rem) rotate(45deg); }
+  .navigation-menu[open] .menu-toggle span:last-child { transform: translateY(-0.2rem) rotate(-45deg); }
+  nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    display: none;
+    padding: 0.75rem 1rem 1rem;
+    border-bottom: 1px solid var(--line);
+    background: rgba(5, 13, 38, 0.98);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .navigation-menu[open] nav { display: flex; }
+  nav a { min-height: 3rem; padding-inline: 0.5rem; font-size: 0.88rem; }
+  nav a::after { right: 0.5rem; bottom: 0; left: 0.5rem; }
   .hero { min-height: 0; }
   .hero-inner { min-height: 0; padding-block: 5rem 8rem; }
   h1 { font-size: clamp(3rem, 15vw, 4.5rem); }
@@ -392,6 +434,7 @@ footer a { display: inline-flex; min-height: 2.75rem; align-items: center; gap: 
   .service-list { border-top: 0; grid-template-columns: 1fr; }
   .service-item, .service-item:first-child, .service-item:last-child { min-height: auto; padding: 2rem 0 2.5rem; border-top: 1px solid var(--line); border-right: 0; }
   .service-number { margin-bottom: 2.5rem; }
+  .process-step { grid-template-columns: 3rem 1fr; }
   .founder { grid-template-columns: 4.25rem 1fr; gap: 1.1rem; }
   .founder-initials { width: 4.25rem; height: 4.25rem; }
   .footer-inner { min-height: 9rem; }

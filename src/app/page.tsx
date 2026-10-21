@@ -1,7 +1,16 @@
+import { SiteHeader } from "./site-header";
+
 const services = [
   { number: "01", title: "Software para negocios", description: "Sistemas a medida para organizar citas, inventarios y procesos de operación." },
   { number: "02", title: "Automatización con IA", description: "Flujos de trabajo para reducir tareas repetitivas y facilitar el manejo de información." },
   { number: "03", title: "Contenido digital", description: "Herramientas y procesos para facilitar la creación de imágenes, videos y publicaciones." },
+];
+
+const processSteps = [
+  { number: "01", title: "Entendemos tu negocio", description: "Escuchamos lo que necesitas, cómo trabajas hoy y qué tareas te gustaría mejorar." },
+  { number: "02", title: "Definimos el alcance", description: "Acordamos una primera solución, sus prioridades y lo que incluirá el proyecto." },
+  { number: "03", title: "Construimos y revisamos", description: "Desarrollamos por etapas y compartimos avances para recibir tus comentarios." },
+  { number: "04", title: "Entregamos y acompañamos", description: "Te mostramos cómo utilizar la solución y acordamos el seguimiento que necesite." },
 ];
 
 const founders = [
@@ -25,8 +34,7 @@ function WaveVisual() {
         <circle className="visual-node" cx="101" cy="259" r="7" />
         <circle className="visual-node" cx="393" cy="152" r="7" />
         <circle className="visual-node" cx="546" cy="257" r="7" />
-        <circle className="visual-core" cx="310" cy="310" r="58" />
-        <path className="visual-mark" d="M284 332v-44l26 28 26-28v44" />
+        <circle className="visual-core" cx="310" cy="310" r="14" />
       </svg>
       <span className="visual-label visual-label-top">Ideas</span>
       <span className="visual-label visual-label-bottom">Soluciones</span>
@@ -38,16 +46,7 @@ export default function Home() {
   return (
     <>
       <a className="skip-link" href="#contenido">Saltar al contenido</a>
-      <header className="site-header">
-        <div className="header-inner">
-          <a className="wordmark" href="#inicio" aria-label="Ramdi Labs, ir al inicio">
-            <span className="wordmark-symbol" aria-hidden="true">R</span><span>Ramdi Labs</span>
-          </a>
-          <nav aria-label="Navegación principal">
-            <a href="#servicios">Servicios</a><a href="#equipo">Equipo</a>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main id="contenido">
         <section className="hero" id="inicio">
@@ -81,6 +80,24 @@ export default function Home() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="section process" id="proceso">
+          <div className="section-inner process-layout">
+            <div className="process-intro">
+              <p className="eyebrow">Cómo trabajamos</p>
+              <h2>De una necesidad a una solución.</h2>
+              <p>Cada negocio tiene su propia forma de trabajar. Nuestro punto de partida es entenderla y definir juntos qué vale la pena construir.</p>
+            </div>
+            <ol className="process-list">
+              {processSteps.map((step) => (
+                <li className="process-step" key={step.number}>
+                  <span className="process-number" aria-hidden="true">{step.number}</span>
+                  <div><h3>{step.title}</h3><p>{step.description}</p></div>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
