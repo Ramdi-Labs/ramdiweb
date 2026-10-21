@@ -2,9 +2,15 @@ import Image from "next/image";
 import { SiteHeader } from "./site-header";
 
 const services = [
-  { number: "01", title: "Software para negocios", description: "Sistemas a medida para organizar citas, inventarios y procesos de operación." },
-  { number: "02", title: "Automatización con IA", description: "Flujos de trabajo para reducir tareas repetitivas y facilitar el manejo de información." },
-  { number: "03", title: "Contenido digital", description: "Herramientas y procesos para facilitar la creación de imágenes, videos y publicaciones." },
+  { number: "01", title: "Software para negocios", description: "Aplicaciones y sistemas a medida." },
+  { number: "02", title: "Automatización con IA", description: "Integración de herramientas y procesos." },
+  { number: "03", title: "Contenido digital", description: "Herramientas para crear y preparar contenido." },
+];
+
+const improvements = [
+  { title: "Tu operación, más organizada", description: "Citas, pedidos o inventarios en un solo lugar, con información fácil de consultar." },
+  { title: "Menos trabajo repetitivo", description: "Conectamos herramientas y automatizamos pasos para que no tengas que hacer lo mismo una y otra vez." },
+  { title: "Tu contenido, más fácil de preparar", description: "Creamos flujos para preparar imágenes, videos y publicaciones que puedas revisar antes de compartir." },
 ];
 
 const processSteps = [
@@ -96,6 +102,31 @@ export default function Home() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="section improvements" id="mejoras">
+          <div className="section-inner">
+            <div className="improvements-heading">
+              <div>
+                <p className="eyebrow">Tu negocio, con más posibilidades</p>
+                <h2>Lo que podemos mejorar en tu negocio.</h2>
+              </div>
+              <ul className="benefit-statement">
+                <li>Más orden.</li>
+                <li>Menos tareas repetidas.</li>
+                <li className="benefit-emphasis">Más tiempo para tu negocio.</li>
+              </ul>
+            </div>
+            <div className="improvement-list">
+              {improvements.map((improvement) => (
+                <article className="improvement-item" key={improvement.title}>
+                  <h3>{improvement.title}</h3>
+                  <p>{improvement.description}</p>
+                </article>
+              ))}
+            </div>
+            <p className="improvements-closing">Primero entendemos cómo trabajas. Después proponemos una solución a tu medida.</p>
           </div>
         </section>
 
